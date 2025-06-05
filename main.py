@@ -127,7 +127,7 @@ def get_hover_html(excipient):
 # --- Load data ---
 @st.cache_data
 def load_data():
-    df = pd.read_excel("Excipient Incompatibilty Grid.xlsx", index_col=0)
+    df = pd.read_excel("data/Excipient Incompatibilty Grid.xlsx", index_col=0)
     df.index = df.index.str.strip()
     df.columns = df.columns.str.strip()
     excipients = sorted(set(df.index) | set(df.columns))
