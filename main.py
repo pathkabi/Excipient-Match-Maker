@@ -66,8 +66,7 @@ st.markdown('<div class="top-banner">Excipient Match Maker</div>', unsafe_allow_
 
 
 # Load Excipient Descriptions from Excel
-desc_file = "Excipient Descriptions.xlsx"
-desc_df = pd.read_excel(desc_file)
+desc_df = pd.read_excel("data/Excipient Descriptions.xlsx")
 
 # Strip whitespace and create dictionary for lookup
 desc_df.columns = desc_df.columns.str.strip()
@@ -76,10 +75,9 @@ desc_df['Description'] = desc_df['Description'].str.strip()
 
 excipient_descriptions = dict(zip(desc_df['Excipient'], desc_df['Description']))
 
-explanation_file = "Excipient Incapability Explanation.xlsx"
 
 try:
-    explanation_df = pd.read_excel(explanation_file)
+    explanation_df = pd.read_excel("data/Excipient Incapability Explanation.xlsx")
     explanation_df.columns = explanation_df.columns.str.strip()
 
     incompatibility_explanations = {}
@@ -205,7 +203,7 @@ def get_incompat_hover_html(pair, severity, explanations_dict):
 # --- Load data ---
 @st.cache_data
 def load_data():
-    df = pd.read_excel("Excipient Incompatibilty Grid.xlsx", index_col=0)
+    df = pd.read_excel("data/Excipient Incompatibilty Grid.xlsx", index_col=0)
     df.index = df.index.str.strip()
     df.columns = df.columns.str.strip()
     excipients = sorted(set(df.index) | set(df.columns))
